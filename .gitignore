@@ -1,0 +1,3 @@
+*.cache
+launch.json
+tasks.json
