@@ -3,13 +3,6 @@ using System.Collections.Generic;
 
 namespace nick
 {
-    class State 
-    {
-        public string Capital;
-        public string StateCode;
-        public string Name;
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -24,49 +17,49 @@ namespace nick
             
             states.Add(new State() {
                     Name = "Florida",
-                    StateCode = "FL",
+                    Abbreviation = "FL",
                     Capital = "Tallahassee"
             });
 
             states.Add(new State() {
                 Name = "Louisianna",
-                StateCode = "LA",
+                Abbreviation = "LA",
                 Capital = "Baton Rouge"
             });
 
             states.Add(new State() {
                 Name = "Arkansas",
-                StateCode = "AR",
+                Abbreviation = "AR",
                 Capital = "Little Rock"
             });
 
             states.Add(new State() {
                 Name = "Kentucky",
-                StateCode = "KY",
+                Abbreviation = "KY",
                 Capital = "Frank Fort"
             });
 
             states.Add(new State() {
                 Name = "Alabama",
-                StateCode = "AL",
+                Abbreviation = "AL",
                 Capital = "Montgomery"
             });
 
             states.Add(new State() {
                 Name = "Georgia",
-                StateCode = "GA",
+                Abbreviation = "GA",
                 Capital = "Atlanta"
             });
             
             states.Add(new State() {
                 Name = "North Carolina",
-                StateCode = "NC",
+                Abbreviation = "NC",
                 Capital = "Raleigh"
             });
 
             states.Add(new State() {
                 Name = "South Carolina",
-                StateCode = "NC",
+                Abbreviation = "NC",
                 Capital = "Columbia"
             });
             
