@@ -35,11 +35,41 @@ namespace nick
             });
 
             states.Add(new State() {
-                Name = "New York",
-                StateCode = "NY",
-                Capital = "Albany"
+                Name = "Arkansas",
+                StateCode = "AR",
+                Capital = "Little Rock"
             });
 
+            states.Add(new State() {
+                Name = "Kentucky",
+                StateCode = "KY",
+                Capital = "Frank Fort"
+            });
+
+            states.Add(new State() {
+                Name = "Alabama",
+                StateCode = "AL",
+                Capital = "Montgomery"
+            });
+
+            states.Add(new State() {
+                Name = "Georgia",
+                StateCode = "GA",
+                Capital = "Atlanta"
+            });
+            
+            states.Add(new State() {
+                Name = "North Carolina",
+                StateCode = "NC",
+                Capital = "Raleigh"
+            });
+
+            states.Add(new State() {
+                Name = "South Carolina",
+                StateCode = "NC",
+                Capital = "Columbia"
+            });
+            
             return states;
         }
 
