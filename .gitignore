@@ -2,3 +2,6 @@
 *.cache
 launch.json
 tasks.json
+bin/
+obj/
+.vscode/
