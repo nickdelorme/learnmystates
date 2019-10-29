@@ -4,27 +4,40 @@ using System.Collections.Generic;
 
 namespace nick
 {
+    /// <summary>
+    /// Tests the users knowledge of state abbreviations.
+    /// </summary>
     public class AbbreviationQuiz
     {
         List<State> _states;
-        Random _random;
         List<KeyValuePair<State, string>> _answers;
+        Random _random;
 
         public AbbreviationQuiz(List<State> states)
         {
-            this._states = states;
-             _random = new Random();
-             _answers = new List<KeyValuePair<State, string>>();
+            _states = states;
+            _answers = new List<KeyValuePair<State, string>>();
+            _random = new Random();
         }
 
         public void AskQuestion()
         {
-            // Get a random state question.
-            State state = PrintQuestion();
+            // Get a state in random order.
+            State state = GetRandomState();
 
-            // Get the user's answer.
+            if (state == null)
+            {
+                // No more states to ask questions for.
+                return;
+            }
+
+            // Ask the question.
+            PrintQuestion(state);
+
+            // Get the answer.
             string answer = GetAnswer(state);
 
+            // Check if it was correct or not.
             if (CheckAnswer(answer, state) == true)
             {
                 Console.WriteLine("Correct!");
@@ -37,16 +50,20 @@ namespace nick
 
         public void PrintScore()
         {
-            int correct = _answers.Where(a => CheckAnswer(a.Value, a.Key)).Count();
-            int total = _answers.Count();
+            int correct, total;
+            GetScore(out correct, out total);
 
             Console.WriteLine($"You answered {correct} correct out of {total} states.");
         }
 
-        private State PrintQuestion()
+        private void GetScore(out int correct, out int total)
         {
-            State state = GetRandomState();
+            correct = _answers.Where(a => CheckAnswer(a.Value, a.Key)).Count();
+            total = _answers.Count();
+        }
 
+        private State PrintQuestion(State state)
+        {
             string question = $"Type the abbreviation for {state.Name} and press <ENTER>: ";
             Console.Write(question);   
             
@@ -55,22 +72,22 @@ namespace nick
 
         private State GetRandomState()
         {
-            int index = _random.Next(0, _states.Count - 1);
-            State state = _states[index];
-            
-            if (AlreadyAnsweredCorrectly(state))
-            {
-                return GetRandomState();
-            }
-            else
-            {
-                return state;
-            }
+            State state = null;
+            do {
+                if (_states.Count == _answers.Count)
+                    break;
+                
+                int index = _random.Next(0, _states.Count);
+                state = _states[index];
+
+            } while (AlreadyAnswered(state)); 
+
+            return state;
         }
 
-        private bool AlreadyAnsweredCorrectly(State state)
+        private bool AlreadyAnswered(State state)
         {
-            return _answers.Exists(kvp => kvp.Key == state && CheckAnswer(kvp.Value, kvp.Key));
+            return _answers.Exists(kvp => kvp.Key == state);
         }
 
         private string GetAnswer(State state)
@@ -87,7 +104,7 @@ namespace nick
         {
             if (string.IsNullOrWhiteSpace(answer))
             {
-                Console.WriteLine("Please provide a valid abbreviation and press <ENTER>: ");
+                Console.WriteLine("Invalid abbreviation!");
                 return false;
             }
 
