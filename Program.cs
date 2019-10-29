@@ -12,7 +12,7 @@ namespace nick
             AbbreviationQuiz quiz = new AbbreviationQuiz(states);
             
             Console.WriteLine("Starting your quiz.");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < states.Count; i++)
             {
                 quiz.AskQuestion();
             }
@@ -68,7 +68,7 @@ namespace nick
 
            states.Add(new State() {
                 Name = "South Carolina",
-                Abbreviation = "NC",
+                Abbreviation = "SC",
                 Capital = "Columbia"
             }); 
 
@@ -91,8 +91,6 @@ namespace nick
             });
 
             return states;
-        
-
         }
 
         static void PrintStates(List<State> states)
