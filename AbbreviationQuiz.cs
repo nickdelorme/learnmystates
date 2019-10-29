@@ -40,11 +40,15 @@ namespace nick
             // Check if it was correct or not.
             if (CheckAnswer(answer, state) == true)
             {
-                Console.WriteLine("Correct!");
+                if (!answer.All(char.IsUpper))
+                {
+                    PrintLine("\tState abbreviations should be capitalzed.", ConsoleColor.Yellow);
+                }                
+                PrintLine("\tCorrect!", ConsoleColor.Green);
             }
             else
             {
-                Console.WriteLine("Sorry, that's not correct.");
+                PrintLine("\tSorry, that's not correct.", ConsoleColor.Red);
             }
         }
 
@@ -53,7 +57,7 @@ namespace nick
             int correct, total;
             GetScore(out correct, out total);
 
-            Console.WriteLine($"You answered {correct} correct out of {total} states.");
+            PrintLine($"You answered {correct} correct out of {total} states.", ConsoleColor.Yellow);
         }
 
         private void GetScore(out int correct, out int total)
@@ -65,7 +69,7 @@ namespace nick
         private State PrintQuestion(State state)
         {
             string question = $"Type the abbreviation for {state.Name} and press <ENTER>: ";
-            Console.Write(question);   
+            Print(question, ConsoleColor.White);   
             
             return state;         
         }
@@ -104,11 +108,23 @@ namespace nick
         {
             if (string.IsNullOrWhiteSpace(answer))
             {
-                Console.WriteLine("Invalid abbreviation!");
                 return false;
             }
 
             return (answer.Trim().ToUpper() == state.Abbreviation.ToUpper());
+        }
+
+        private void PrintLine(string message, ConsoleColor color)
+        {
+            Print(message + "\n", color);
+        }
+
+        private void Print(string message, ConsoleColor color)
+        {
+            ConsoleColor previousColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            Console.Write(message);
+            Console.ForegroundColor = previousColor;
         }
     }
 }
