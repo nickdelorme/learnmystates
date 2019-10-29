@@ -81,7 +81,7 @@ namespace nick
            states.Add(new State() {
                 Name = "Tennessee",
                 Abbreviation = "TN",
-                Capital = "Nashvil"
+                Capital = "Nashville"
             });
                       
             states.Add(new State() {
