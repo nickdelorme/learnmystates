@@ -8,7 +8,16 @@ namespace nick
         static void Main(string[] args)
         {
             List<State> states = CreateStates();
-            PrintStates(states);
+            // PrintStates(states);
+            AbbreviationQuiz quiz = new AbbreviationQuiz(states);
+            
+            Console.WriteLine("Starting your quiz.");
+            for (int i = 0; i < 10; i++)
+            {
+                quiz.AskQuestion();
+            }
+            quiz.PrintScore();
+            Console.WriteLine("All Done!");
         }
 
         static List<State> CreateStates()
