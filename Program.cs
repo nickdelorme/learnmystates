@@ -66,13 +66,33 @@ namespace nick
                 Capital = "Raleigh"
             });
 
-            states.Add(new State() {
+           states.Add(new State() {
                 Name = "South Carolina",
                 Abbreviation = "NC",
                 Capital = "Columbia"
-            });
+            }); 
+
+           states.Add(new State() {
+                Name = "Mississippi",
+                Abbreviation = "MS",
+                Capital = "Jackson"
+            }); 
             
+           states.Add(new State() {
+                Name = "Tennessee",
+                Abbreviation = "TN",
+                Capital = "Nashvil"
+            });
+                      
+            states.Add(new State() {
+                Name = "Virginia",
+                Abbreviation = "VA",
+                Capital = "Richmond"
+            });
+
             return states;
+        
+
         }
 
         static void PrintStates(List<State> states)
