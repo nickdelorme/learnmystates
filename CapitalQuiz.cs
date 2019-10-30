@@ -5,11 +5,11 @@ using System.Collections.Generic;
 namespace nick
 {
     /// <summary>
-    /// Tests the users knowledge of state abbreviations.
+    /// Tests the users knowledge of state capitals.
     /// </summary>
-    public class AbbreviationQuiz : StatesQuiz
+    public class CapitalQuiz : StatesQuiz
     {
-        public AbbreviationQuiz(List<State> states) : base(states)
+        public CapitalQuiz(List<State> states) : base(states)
         {}
 
         public override void AskQuestion()
@@ -31,22 +31,19 @@ namespace nick
 
             // Check if it was correct or not.
             if (CheckAnswer(answer, state) == true)
-            {
-                if (!answer.All(char.IsUpper))
-                {
-                    PrintLine("\tState abbreviations should be capitalzed.", ConsoleColor.Yellow);
-                }                
+            {              
                 PrintLine("\tCorrect!", ConsoleColor.Green);
             }
             else
             {
-                PrintLine("\tSorry, that's not correct.", ConsoleColor.Red);
+                PrintLine($"\tThe correct answer is {state.Capital}.", ConsoleColor.Red);
+                //CheckSpelling()
             }
         }
 
         protected override State PrintQuestion(State state)
         {
-            string question = $"Type the abbreviation for {state.Name} and press <ENTER>: ";
+            string question = $"Type the state capital for {state.Name} and press <ENTER>: ";
             Print(question, ConsoleColor.White);   
             
             return state;         
@@ -59,7 +56,7 @@ namespace nick
                 return false;
             }
 
-            return (answer.Trim().ToUpper() == state.Abbreviation.ToUpper());
+            return (answer.Trim().ToUpper() == state.Capital.ToUpper());
         }
     }
 }

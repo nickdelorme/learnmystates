@@ -8,7 +8,7 @@ namespace nick
         static void Main(string[] args)
         {
             List<State> states = CreateStates();
-            AbbreviationQuiz quiz = new AbbreviationQuiz(states);
+            StatesQuiz quiz = new AbbreviationQuiz(states);
             
             Console.WriteLine("Starting your quiz.");
             for (int i = 0; i < states.Count; i++)
@@ -17,6 +17,31 @@ namespace nick
             }
             quiz.PrintScore();
             Console.WriteLine("All Done!");
+        }
+
+        static StatesQuiz ChooseQuiz(List<State> states)
+        {
+            StatesQuiz quiz = null;
+
+            Console.WriteLine("Choose a quiz by pressing the number below:\n" + 
+                "\t1 - Abbreviations Quiz\n" +
+                "\t2 - Capitals Quiz\n");
+
+            ConsoleKeyInfo input = Console.ReadKey(true);
+            switch (input.Key)
+            {
+                case ConsoleKey.D1:
+                    quiz = new AbbreviationQuiz(states);
+                    break;
+                case ConsoleKey.D2:
+                    quiz = new CapitalQuiz(states);
+                    break;
+                default:
+                    quiz = ChooseQuiz(states); // recurse till correct.
+                    break;
+            }
+            
+            return quiz;
         }
 
         static List<State> CreateStates()
@@ -44,7 +69,7 @@ namespace nick
             states.Add(new State() {
                 Name = "Kentucky",
                 Abbreviation = "KY",
-                Capital = "Frank Fort"
+                Capital = "Frankfort"
             });
 
             states.Add(new State() {
